@@ -11,6 +11,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - identity/oidc/token/role-001
       - id: secrets
         uses: hashicorp/vault-action@v2
         with:
@@ -18,7 +19,7 @@ jobs:
           method: jwt
           role: robot
           secrets: |
-            /identity/oidc/token/role-001 | VAULT_JWT ;  
+            /identity/oidc/token/role-001 token | VAULT_JWT ;  
       - name: Azure CLI script
         uses: azure/CLI@v1
         with:
