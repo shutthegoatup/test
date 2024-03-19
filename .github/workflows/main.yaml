@@ -24,6 +24,5 @@ jobs:
         with:
           azcliversion: latest
           inlineScript: |
-            echo ${{ steps.secrets.outputs.VAULT_JWT }} | sed 's/./& /g'
             az login --service-principa -u ${{ secrets.AZURE_CLIENT_ID }} --tenant ${{ secrets.AZURE_TENANT_ID }} --federated-token ${{ steps.secrets.outputs.VAULT_JWT }}
             az account show
