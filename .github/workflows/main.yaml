@@ -25,6 +25,8 @@ jobs:
           azcliversion: latest
           inlineScript: |
             echo 1
+            time
             az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} --tenant ${{ secrets.AZURE_TENANT_ID }} --federated-token ${{ steps.secrets.outputs.VAULT_JWT }}
+            time
             echo 2
             az account show
